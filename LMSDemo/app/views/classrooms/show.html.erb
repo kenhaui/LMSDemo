@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+<% @course.classrooms.each do |classroom| %>
+<p>
+  <strong>Name:</strong>
+  <%= classroom.name %>
+</p>
+
+<p>
+  <strong>Limit:</strong>
+  <%= classroom.limit %>
+</p>
+<% end %>

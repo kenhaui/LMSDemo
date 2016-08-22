@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <div class="col-sm-9 ">
+    <div class="thumbnail">
+     <%= image_tag(@course.image) %>
+      <div class="caption">
+        <h3><%= @course.name %></h3>
+        <p>
+          <strong>Start date:</strong>
+          <%= @course.start_date %>
+        </p>
+        <p>
+          <strong>End date:</strong>
+          <%= @course.end_date %>
+        </p>
+        <p>
+          <strong>Teacher :</strong>
+           <%= @course.user.email %>
+        </p>
+        <p><%= @course.description %></p>
+        <% if current_user.has_role? :teacher %>
+        <p><%=link_to "New Classroom", new_course_classroom_path(@course), :class=>'btn btn-primary'%></p>
+        <%= link_to 'Edit', edit_course_path(@course) %> |
+        <% end %>
+        <%= link_to 'Back', courses_path %>
+        <h4>Course have <%=@course.classrooms.count %> classrooms</h4>
+        <% @course.classrooms.each do |classroom| %>
+            <div class="panel panel-success">
+              <div class="panel-heading">
+                <h3 class="panel-title">&nbsp;<span class="glyphicon glyphicon-education"></span>&nbsp;&nbsp;<%= classroom.name %></h3>
+              </div>
+              <div class="panel-body">
+                   Limit students : <%= classroom.limit %><br>
+                   <%= link_to "Join class" ,:class=>'btn btn-primary' %>
+              </div>
+            </div>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
